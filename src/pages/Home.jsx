@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 import { searchMovies,getMovies } from '../services/tmdbapi';
 
-const Home = ({movies,status,error,setMovies}) => {
+const Home = ({movies,status,error,setMovies, favourites,toggleFavourites}) => {
 
   
   console.log(movies)
@@ -34,7 +34,7 @@ const handleSearch=async(query)=>{
 
       {status==="success" && movies.map((movie) => (
        
-         <MovieCard movie={movie}/>
+         <MovieCard movie={movie} favourites={favourites} toggleFavourites={toggleFavourites}/>
        
       ))}
     </div>

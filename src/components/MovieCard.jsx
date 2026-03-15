@@ -4,8 +4,10 @@ import { IoMdHeart } from "react-icons/io";
 
 const MovieCard = ({movie}) => {
     const [favourite,setFavourite]=useState(false);
-    const addToFavorite=()=>{
+    const [favouriteList,setFavouriteList]=useState([]);
+    const addToFavorite=(movie)=>{
         setFavourite(!favourite);
+        setFavouriteList([...favouriteList,favouriteList]);
     }
   return (
     <div className='bg-cyan-400 m-5 p-5 rounded-2xl w-50 flex flex-col text-pink-800 transform hover:scale-105 cursor-pointer'>

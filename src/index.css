@@ -2,17 +2,20 @@
 
 *{
     transition: all 0.1s ease-in-out;
+    
 }
 
 body{
     transition: none;
+  
 }
 .dark{
     background-color: #030712;
     color: white;
 }
 .light{
-    background-color: #dbdbdb;
+    background: #e8f8ff;
+background: linear-gradient(135deg,rgba(232, 248, 255, 1) 0%, rgb(112, 219, 221)  100%);
     color: black;
 }
 
