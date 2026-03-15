@@ -1,37 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { getMovies } from '../services/tmdbapi'
+
 import MovieCard from '../components/MovieCard';
+import SearchBar from '../components/SearchBar';
+import { searchMovies,getMovies } from '../services/tmdbapi';
 
-const Home = () => {
+const Home = ({movies,status,error,setMovies}) => {
 
-  const [movies,setMovies]=useState([]);
-  const [status,setStatus]=useState("idle");
-  const [error,setError]=useState(null);
-
-  useEffect(()=>{
-
-    const fetchMovies=async()=>{
-
-      setStatus("loading");
-      setError(null);
-        try{
- const data=await getMovies();
-      setMovies(data);
-        }catch(err){
-            setStatus("error");
-            setError(err.message);
-        }finally{
-          setStatus("success");
-        }
-     
-    }
-    fetchMovies()
-  },[])
-
+  
   console.log(movies)
+const handleSearch=async(query)=>{
 
+    if(!query){
+      const data=await getMovies();
+      setMovies(data);
+      return;
+    }
+        const data=await searchMovies(query);
+        setMovies(data)
+  }
   return (
     <div>
+        <SearchBar onSearch={handleSearch}/>
 {status==="error" && (<div>Error:{error}</div>)}
         {status==="loading" && (<div className='loader'></div>)}
 
