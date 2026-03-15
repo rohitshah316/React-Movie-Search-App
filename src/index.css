@@ -1,9 +1,52 @@
 @import "tailwindcss";
 
+*{
+    transition: all 0.1s ease-in-out;
+}
 
+body{
+    transition: none;
+}
 .dark{
     background-color: #030712;
+    color: white;
 }
 .light{
-    background-color: #fff;
+    background-color: #dbdbdb;
+    color: black;
+}
+
+
+/* navbar */
+nav .active{
+    color: rgb(77, 125, 236);
+    border-bottom: 2px solid rgb(77, 125, 236);
+    transition: all 0.1s ease-out;
+}
+nav a{
+    color: rgb(187, 182, 221);
+}
+
+nav a:hover{
+    transform: translateY(-2px);
+        transition: all 0.1s ease-out;
+
+}
+
+
+/* loading screen */
+.loader{
+    width: 50px;
+    height: 50px;
+    border: 5px solid white;
+    border-bottom: 5px solid blue;
+    border-radius: 50%;
+    animation: loader 2s infinite linear;
+    margin: 10px auto;
+}
+@keyframes loader {
+    100%{
+        transform: rotate(360deg);
+    }
+    
 }
