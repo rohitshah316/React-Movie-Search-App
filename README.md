@@ -14,7 +14,7 @@ Check out the live version here:
 ---
 
 ## 📸 Preview  
-![App Screenshot](https://github.com/rohitshah316/React-Movie-Search-App/public/movie-search-app-ss.png)
+![App Screenshot](https://github.com/rohitshah316/React-Movie-Search-App/blob/main/public/movie-search-app-ss.png)
 
 ---
 
