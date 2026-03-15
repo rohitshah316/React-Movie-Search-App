@@ -21,6 +21,7 @@ const handleSearch=async(query)=>{
   return (
     <div>
         <SearchBar onSearch={handleSearch}/>
+       
 {status==="error" && (<div>Error:{error}</div>)}
         {status==="loading" && (<div className='loader'></div>)}
 

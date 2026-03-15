@@ -9,6 +9,8 @@ import Favourites from './pages/Favourites'
 import { getMovies } from './services/tmdbapi'
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
+import { FavouriteProvider } from './context/FavouriteContext'
+import MovieDetail from './pages/MovieDetail'
 
 const App = () => {
  
@@ -37,29 +39,12 @@ const App = () => {
   },[])
 
 
-const [favourites,setFavourites]=useState(()=>{
-  const storedFav=localStorage.getItem("favourites");
-  return storedFav? JSON.parse(storedFav):[];
-});
 
-const toggleFavourite=(movie)=>{
-  setFavourites((prev)=>{
-    const exists=prev.find(m=>m.id===movie.id);
-
-    if(exists){
-      return prev.filter(m=>m.id!==movie.id);
-    }
-    return [...prev,movie];
-  })
-}
-
-useEffect(()=>{
-  localStorage.setItem("favourites",JSON.stringify(favourites));
-},[favourites])
-  
 
 
   return (
+    <FavouriteProvider>
+
     <BrowserRouter>
      <div className={`bg-gray-950 min-h-screen text-white ${theme} flex flex-col`}>
       <NavBar/>
@@ -68,10 +53,11 @@ useEffect(()=>{
      <div className='flex-1'>
 
     <Routes>
-      <Route path='/' element={<Home movies={movies} status={status} error={error} setMovies={setMovies} favourites={favourites} toggleFavourite={toggleFavourite}/>}/>
-      <Route path='/favourites' element={<Favourites favourites={favourites}/>}/>
+      <Route path='/' element={<Home movies={movies} status={status} error={error} setMovies={setMovies} />}/>
+      <Route path='/favourites' element={<Favourites/>}/>
       <Route path='/popular' element={<Popular/>}/>
       <Route path='/*' element={<NotFound/>}/>
+      <Route path='/movie/:id' element={<MovieDetail/>}/>
 
       
     </Routes>
@@ -84,6 +70,7 @@ useEffect(()=>{
 
     
     </BrowserRouter>
+    </FavouriteProvider>
   )
 }
 
